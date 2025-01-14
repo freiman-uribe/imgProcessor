@@ -1,0 +1,37 @@
+
+<mat-card class="search-card">
+    <mat-card-header>
+        <mat-card-title>Buscar Imágenes</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Inicio</mat-label>
+                <input matInput [matDatepicker]="startPicker" [(ngModel)]="startDate" name="startDate"
+                    [max]="endDate || maxDate">
+                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha de Fin</mat-label>
+                <input matInput [matDatepicker]="endPicker" [(ngModel)]="endDate" name="endDate" [min]="startDate"
+                    [max]="maxDate" [disabled]="!startDate">
+                <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="onSearch()">Buscar</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+<div *ngIf="images.length > 0" class="results">
+    <div class="results-title">Resultados de la Búsqueda</div>
+    <div class="image-list">
+        <mat-card *ngFor="let image of images" class="image-card">
+            <img mat-card-image [src]="image.url" alt="Image">
+            <mat-card-content>
+                <h4>Autor</h4>
+                <p>{{ image.name }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
