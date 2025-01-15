@@ -34,7 +34,9 @@ cd ImgProcessor
 ```
 
 #### Para visualizar la estructura mas claramente ingresa a: 
-- `https://gitingest.com/freiman-uribe/imgProcessor`
+- ```bash
+  https://gitingest.com/freiman-uribe/imgProcessor
+  ```
 
 
 ## Instalación
