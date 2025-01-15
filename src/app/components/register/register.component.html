@@ -3,26 +3,51 @@
         <mat-card-title>Registrar</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <form>
+        <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
             <mat-form-field appearance="fill">
                 <mat-label>Nombre</mat-label>
-                <input matInput [(ngModel)]="name" name="name" />
+                <input matInput [(ngModel)]="name" name="name" required />
+                <mat-error *ngIf="registerForm.controls['name']?.invalid && registerForm.controls['name']?.touched">
+                    Nombre es requerido
+                </mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Nombre de Usuario</mat-label>
-                <input matInput [(ngModel)]="username" name="username" />
+                <input matInput [(ngModel)]="username" name="username" required />
+                <mat-error
+                    *ngIf="registerForm.controls['username']?.invalid && registerForm.controls['username']?.touched">
+                    Nombre de Usuario es requerido
+                </mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <input matInput type="password" [(ngModel)]="password" name="password" />
+                <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" name="password" required
+                    minlength="6" />
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error
+                    *ngIf="registerForm.controls['password']?.invalid && registerForm.controls['password']?.touched">
+                    <span *ngIf="registerForm.controls['password']?.errors?.['required']">Contraseña es requerida</span>
+                    <span *ngIf="registerForm.controls['password']?.errors?.['minlength']">Contraseña debe tener al
+                        menos 6 caracteres</span>
+                </mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Tipo de Usuario</mat-label>
-                <mat-select [(ngModel)]="userType" name="userType">
+                <mat-select [(ngModel)]="userType" name="userType" required>
                     <mat-option value="Client">Cliente</mat-option>
                 </mat-select>
+                <mat-error
+                    *ngIf="registerForm.controls['userType']?.invalid && registerForm.controls['userType']?.touched">
+                    Tipo de Usuario es requerido
+                </mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary" (click)="onRegister()">Registrar</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Registrar</button>
         </form>
     </mat-card-content>
+    <mat-card-actions>
+        <a mat-button routerLink="/login">¿Ya tienes cuenta? Inicia sesión</a>
+    </mat-card-actions>
 </mat-card>

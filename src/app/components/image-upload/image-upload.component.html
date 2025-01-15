@@ -1,17 +1,14 @@
-<!-- <div>
-    <h2>Upload Image</h2>
-    <input type="file" (change)="onFileSelected($event)" />
-    <button (click)="onUpload()">Upload</button>
-</div> -->
-
 <mat-card class="upload-card">
     <mat-card-header>
         <mat-card-title>Subir Imagen</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <input type="file" (change)="onFileSelected($event)" />
+        <input #fileInput type="file" (change)="onFileSelected($event)" accept=".jpg, .jpeg" hidden />
+        <button mat-raised-button color="accent" (click)="fileInput.click()">Seleccionar Archivo</button>
+        <span *ngIf="fileName">{{ fileName }}</span>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="onUpload()">Subir</button>
+        <button mat-raised-button color="primary" (click)="onUpload()"
+            [disabled]="!selectedFile || isUploading">Subir</button>
     </mat-card-actions>
 </mat-card>

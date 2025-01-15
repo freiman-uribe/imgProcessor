@@ -3,7 +3,7 @@
     <button (click)="drawer.toggle()" mat-icon-button aria-label="Toggle navigation">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>My App</span>
+    <span>Image processor App</span>
     <span class="example-spacer"></span>
     <button (click)="onLogout()" mat-icon-button aria-label="Share">
       <mat-icon>logout</mat-icon>
@@ -11,10 +11,10 @@
   </mat-toolbar>
   <mat-drawer-container *ngIf="isLoggedIn" class="example-container" hasBackdrop="true">
     <mat-drawer class="example-sidenav" #drawer mode="over">
-      <mat-nav-list>
+      <mat-nav-list routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <a mat-list-item routerLink="/upload" (click)="drawer.toggle()" routerLinkActive="active" ariaCurrentWhenActive="page">Subir Imagen</a>
         <a mat-list-item routerLink="/search" (click)="drawer.toggle()" routerLinkActive="active" ariaCurrentWhenActive="page">Buscar Imágenes</a>
-        <a mat-list-item routerLink="/register" (click)="drawer.toggle()" routerLinkActive="active" ariaCurrentWhenActive="page">Registrar</a>
+        <a mat-list-item routerLink="/count" (click)="drawer.toggle()" routerLinkActive="active" ariaCurrentWhenActive="page">Registros</a>
       </mat-nav-list>
     </mat-drawer>
     <mat-drawer-content>

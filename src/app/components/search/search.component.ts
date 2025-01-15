@@ -30,10 +30,6 @@ import { ImageService } from '../../services/image.service';
   styleUrl: './search.component.css',
 })
 export class SearchComponent {
-  // startDate: string = '';
-  // endDate: string = '';
-  // images: any[] = [];
-
   startDate: Date | null = null;
   endDate: Date | null = null;
   maxDate: Date = new Date();
@@ -42,17 +38,6 @@ export class SearchComponent {
   constructor(private imageService: ImageService) {}
 
   onSearch(): void {
-    // if (this.startDate && this.endDate) {
-    //   this.imageService.searchImages(this.startDate, this.endDate).subscribe(
-    //     (response) => {
-    //       this.images = response;
-    //       console.log('Images retrieved successfully', response);
-    //     },
-    //     (error) => {
-    //       console.error('Error retrieving images', error);
-    //     }
-    //   );
-    // }
     if (this.startDate && this.endDate) {
       const startDateStr = this.startDate.toISOString().split('T')[0];
       const endDateStr = this.endDate.toISOString().split('T')[0];

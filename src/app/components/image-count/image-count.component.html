@@ -1,0 +1,19 @@
+
+<div class="chart-container">
+    <div class="date-picker">
+        <mat-form-field appearance="fill">
+            <mat-label>Seleccionar Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="onDateChange()" [max]="maxDate" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="chart">
+        <h2>Gráfico de Barras</h2>
+        <canvas #barChart></canvas>
+    </div>
+    <div class="chart">
+        <h2>Gráfico Lineal</h2>
+        <canvas #lineChart></canvas>
+    </div>
+</div>
